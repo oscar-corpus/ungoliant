@@ -18,7 +18,7 @@ futures-util = "0.3"
 futures = "0.3"
 structopt = "0.3.21"
 env_logger = "0.8.3"
-log = "0.4.14"
+log = "0.4.20"
 itertools = "0.10.0"
 tokio = { version = "1", features = ["full"] }
 tokio-util = {version="0.6.6", features=["compat"]}
