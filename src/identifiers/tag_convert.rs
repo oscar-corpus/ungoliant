@@ -174,7 +174,7 @@ impl<'a> Tag<'a> {
     pub fn new(tag: &'a str) -> Self {
         Self {
             // attempt to remove first nine chars or pass the whole thing.
-            inner: Tag::fix(&tag.get(9..).unwrap_or(tag)),
+            inner: Tag::fix(tag.get(9..).unwrap_or(tag)),
         }
     }
 
@@ -187,8 +187,8 @@ impl<'a> Tag<'a> {
         };
 
         // go from foo_bar to foo-bar
-        if tag.contains("_") {
-            Cow::from(tag.replace("_", "-"))
+        if tag.contains('_') {
+            Cow::from(tag.replace('_', "-"))
         } else {
             tag
         }

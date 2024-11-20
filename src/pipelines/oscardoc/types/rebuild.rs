@@ -180,7 +180,7 @@ impl ShardResult {
     pub fn new(shard_id: i64, locations: Vec<Location>, metadata: Vec<Metadata>) -> Self {
         let rebuild_info = locations
             .into_iter()
-            .zip(metadata.into_iter())
+            .zip(metadata)
             .map(|(loc, meta)| RebuildInformation::new(loc, meta))
             .collect();
         Self {

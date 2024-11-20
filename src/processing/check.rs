@@ -13,6 +13,7 @@ use unicode_segmentation::UnicodeSegmentation;
 use crate::error::Error;
 
 /// Zipf counter. Holds word counts (`HashMap<String, u64>`) and the total number of words.
+#[derive(Default)]
 pub struct Zipf {
     counts: HashMap<String, u64>,
     nb_words: u64,
@@ -43,15 +44,6 @@ impl ZipfEntry {
     /// Get a reference to the zipf entry's rank.
     pub fn rank(&self) -> u64 {
         self.rank
-    }
-}
-
-impl Default for Zipf {
-    fn default() -> Self {
-        Self {
-            counts: HashMap::default(),
-            nb_words: 0,
-        }
     }
 }
 

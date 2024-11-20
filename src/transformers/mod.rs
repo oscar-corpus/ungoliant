@@ -24,13 +24,13 @@ pub use annotate::Annotate;
 pub use annotate::Annotator;
 pub use content_detector::ContentDetector;
 pub use header::Header;
-pub use lsh::LSH;
 #[cfg(feature = "kenlm")]
 pub use kenlm::AdultDetector;
 #[cfg(feature = "kenlm")]
 pub use kenlm::AdultDetectorBuilder;
 #[cfg(feature = "kenlm")]
 pub use kenlm::Models;
+pub use lsh::LSH;
 pub use noisy::Noisy;
 pub use sentence_filter::Conv;
 pub use sentence_filter::RemoveShortSentences;

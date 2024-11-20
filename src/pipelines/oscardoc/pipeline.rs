@@ -254,7 +254,7 @@ impl OscarDoc {
         let multilingual = StrictMultilingual::default().detect(ids);
 
         let ids: Vec<_> = ids
-            .into_iter()
+            .iter()
             .map(|id| id.clone().map(|_id| _id.into_inner()))
             .collect();
 
@@ -467,15 +467,15 @@ impl Pipeline<()> for OscarDoc {
         let annotator = {
             let mut annotator = Annotator::default();
             annotator
-                .add(Box::new(TinyDocument::default()))
-                .add(Box::new(ShortSentences::default()))
-                .add(Box::new(Header::default()))
-                .add(Box::new(LSH::default()))
-                .add(Box::new(Noisy::default()));
+                .add(Box::<TinyDocument>::default())
+                .add(Box::<ShortSentences>::default())
+                .add(Box::<Header>::default())
+                .add(Box::<LSH>::default())
+                .add(Box::<Noisy>::default());
 
             // add ut1 blocklists for categories
             if let Some(path) = &self.blocklist {
-                let bl = MultipleBlocklist::from_dir(&path)?;
+                let bl = MultipleBlocklist::from_dir(path)?;
                 annotator.add(Box::new(ContentDetector::new(bl)));
             }
 

@@ -175,6 +175,7 @@ impl Default for Conv {
 /// xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 /// xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 /// ```
+#[derive(Default)]
 pub struct RemoveShortSentences {
     filter: Length,
 }
@@ -248,14 +249,6 @@ impl Transform<Record<BufferedBody>> for RemoveShortSentences {
         let (content, ranges) = Self::build_content(s);
         doc.replace_body(content);
         ranges
-    }
-}
-
-impl Default for RemoveShortSentences {
-    fn default() -> Self {
-        Self {
-            filter: Default::default(),
-        }
     }
 }
 

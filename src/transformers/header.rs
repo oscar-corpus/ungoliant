@@ -36,7 +36,7 @@ impl Annotate<Document> for Header {
 
         // there could be better ways of casting this.
         let nb_lines_header = (nb_lines as f64 * self.header_pctg).floor();
-        let treshold_lines = (nb_lines_header as f64 * self.threshold_pctg).floor() as u64;
+        let treshold_lines = (nb_lines_header * self.threshold_pctg).floor() as u64;
         let nb_lines_header = nb_lines_header as usize;
 
         // iterate over the header, counting short lines

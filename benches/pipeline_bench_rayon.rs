@@ -4,7 +4,6 @@ use rayon::prelude::*;
 use ungoliant::identifiers::FastText;
 use ungoliant::sources::commoncrawl::Wet;
 
-
 const NB_RECORDS: usize = 250;
 // bench protocol:
 //

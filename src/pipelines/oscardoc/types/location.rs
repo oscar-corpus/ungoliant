@@ -26,7 +26,7 @@ pub enum LocationKind {
 /// Each field shouldn't be filled more than once to
 /// guarantee some integrity.
 // TODO: Add methods to ensure that we add only once?
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, Default)]
 pub struct LocationBuilder {
     shard_id: Option<usize>,
     record_id: Option<String>,
@@ -35,7 +35,7 @@ pub struct LocationBuilder {
     loc_in_shard: Option<usize>,
 }
 
-impl<'a> LocationBuilder {
+impl LocationBuilder {
     /// Set the partial location's shard id.
     pub fn set_shard_id(&mut self, shard_id: usize) {
         self.shard_id = Some(shard_id);
@@ -69,19 +69,7 @@ impl<'a> LocationBuilder {
     }
 }
 
-impl<'a> Default for LocationBuilder {
-    fn default() -> Self {
-        Self {
-            shard_id: None,
-            record_id: None,
-            line_start: None,
-            line_end: None,
-            loc_in_shard: None,
-        }
-    }
-}
-
-impl<'a> TryFrom<LocationBuilder> for Location {
+impl TryFrom<LocationBuilder> for Location {
     type Error = IncompleteLocation;
 
     fn try_from(value: LocationBuilder) -> Result<Self, Self::Error> {
@@ -122,7 +110,7 @@ impl<'a> TryFrom<LocationBuilder> for Location {
 /// If we're working on the 10th record of a shard that is shard 100,
 /// that the record has 10 lines and we only keep the first 5,
 /// We'd get `line_start=0, line_end=4, loc_in_shard=99`.
-#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq)]
+#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, Default)]
 pub struct Location {
     shard_id: usize,
     record_id: String,
@@ -177,22 +165,8 @@ impl Location {
     }
 }
 
-impl Default for Location {
-    fn default() -> Self {
-        Self {
-            shard_id: Default::default(),
-            record_id: Default::default(),
-            line_start: Default::default(),
-            line_end: Default::default(),
-            loc_in_shard: Default::default(),
-        }
-    }
-}
-
 #[cfg(test)]
 mod tests {
-    
-    
 
     use super::Location;
     use super::LocationBuilder;

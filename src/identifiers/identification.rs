@@ -4,14 +4,11 @@ All identifiers should implement [Identifier] to be useable in processing and pi
 !*/
 use std::ops::Deref;
 
-use crate::error::Error;
 use fasttext::Prediction;
 
 use oxilangtag::{LanguageTag, LanguageTagParseError};
 
 use oscar_io::common::Identification as IdentificationExternal;
-
-use serde::{Deserialize, Serialize};
 
 /// newtype idiom over [oscar_io::Identification]
 #[derive(Debug, Clone)]
